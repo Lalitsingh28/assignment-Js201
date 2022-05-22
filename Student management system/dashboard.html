@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+   
+    <title>Dashboard</title>
+   <style>
+       #box2{
+           display:grid;
+           grid-template-columns: repeat(4,1fr);
+           gap: 20px;
+       }
+      #box2>div> img,h3,h5,p{
+        margin-bottom: -15px;
+       
+      }
+      button{
+          margin-top: 15px;
+          cursor: pointer;
+        background-color: red;
+        color: white;
+        font-size: 18px;
+        border-radius: 5px;
+        border:none;
+        font-weight: bold;
+      }
+      button:hover{
+           background-color: white;
+           color: red;
+      }
+   </style>
+</head>
+<body>
+    <div id="box1"></div>
+    <div id="box2"></div>
+</body>
+</html>
+
+<script>
+    function st(){
+        let data = JSON.parse(localStorage.getItem("students")) || []
+
+        data.forEach(function (elem,index){
+            let div = document.createElement("div");
+
+            let img = document.createElement("img");
+            img.src = elem.url;
+            let name = document.createElement("h3");
+            name.innerText = elem.name;
+            let course = document.createElement("h5");
+            course.innerText = elem.course;
+            let unit = document.createElement("p");
+            unit.innerText = elem.unit;
+            let batch = document.createElement("p");
+            batch.innerText = elem.batch;
+            let btn = document.createElement("button")
+            btn.addEventListener("click",function(){
+                  deletebtn(elem,index)
+            });
+            btn.innerText = "Remove";
+
+            div.append(img,name,course,unit,batch,btn)
+            document.getElementById("box2").append(div)
+            
+        })
+
+    }
+       function deletebtn(elem,index){
+        let data = JSON.parse(localStorage.getItem("students")) || []
+        
+        let trash = JSON.parse(localStorage.getItem("trash")) || []
+        trash.push(elem)
+        localStorage.setItem("trash",JSON.stringify(trash))
+        data.splice(index,1)
+        localStorage.setItem("students",JSON.stringify(data))
+        window.location.reload()
+       }
+    st()
+</script>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+    <title>Student details</title>
+   <style>
+       *{
+           margin:10px 20px ;
+           padding:0px;
+       }
+     input{
+         display: block;
+         font-size: larger;
+     }
+     input:last-child{
+         font-size: 20px;
+         border-radius: 5px;
+         padding:5px;
+         background-color: yellowgreen;
+         color:white;
+         cursor: pointer;
+         border:none;
+
+     }
+     button{
+         font-size: 20px;
+         background-color: green;
+         cursor: pointer;
+         border:none;
+         border-radius: 5px;
+         padding:5px;
+     }
+     a{
+         text-decoration: none;
+         color: white;
+     }
+   </style>
+</head>
+<body>
+    <button>
+        <a href="dashboard.html">Dashboard</a>
+    </button>
+    <h1>Add Students Details</h1>
+    <form id="student" onsubmit="studentData(event)">
+        <input type="text" id="name" placeholder="Enter Name" />
+        <input type="text" id="course" placeholder="Enter Course" />
+        <input type="text" id="unit" placeholder="Enter Unit" />
+        <input type="url" id="image" placeholder="Enter Image" />
+        <input type="number" id="batch" placeholder="Enter Batch" />
+        <input type="submit"/>
+    </form>
+</body>
+</html>
+
+<script>
+     function details(name,course,unit,url,batch){
+         this.name = name;
+         this.course = course;
+         this.unit = unit;
+         this.url = url;
+         this.batch = batch;
+     }
+
+
+
+
+     function studentData(event){
+         event.preventDefault()
+         let form = document.querySelector("#student");
+         let name = form.name.value;
+         let course = form.course.value;
+         let unit = form.unit.value;
+         let url = form.image.value;
+         let batch = form.batch.value;
+
+
+         let detail = new details(name,course,unit,url,batch);
+         
+         let data = JSON.parse(localStorage.getItem("students"))||[]
+
+         data.push(detail)
+         localStorage.setItem("students",JSON.stringify(data))
+     }
+
+     function cal(){
+        let data = JSON.parse(localStorage.getItem("students")) || []
+
+        let stud_obj = {};
+
+        for(let i=0;i<data.length;i++){
+            if(stud_obj[data[i].batch]==false){
+                stud_obj[data[i].batch] = 0
+            }
+        }
+        for(let i=0;i<data.length;i++){
+         stud_obj[data[i].batch]++
+        }
+     }
+     
+     cal()
+</script>
