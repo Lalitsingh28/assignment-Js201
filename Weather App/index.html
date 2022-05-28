@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+   
+    <title>Weather Application</title>
+    
+</head>
+<style>
+    body{
+        background-image:url("https://images.unsplash.com/photo-1622173233839-d4d5510422d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjF8fGNsb3VkeSUyMHdlYXRoZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60")
+    }
+    h1{
+        text-align: center;
+    }
+    .mapouter{
+        display: flex;
+        justify-content: right;
+        margin-top: -550px;
+    }
+    #b1{
+        display: flex;
+        justify-content: center;
+    }
+    #city{
+        font-size: 25px;
+        margin-right: 10px;
+        border-radius: 5px;
+    }
+    button{
+        font-size: 20px;
+        padding:10px;
+        border-radius: 15px;
+        border:none;
+        cursor: pointer;
+        background-color: rgb(124, 202, 202);
+    }
+   
+   #box>h3,p{
+       color:whitesmoke;
+       font-size: 30px;
+   }
+   #box{
+       width:20%;
+       margin-top: 50px;
+   }
+</style>
+<body>
+    <h1>Search Weather</h1>
+    <div id="b1">
+        
+        <input type="text" id="city" >
+        <button onclick="getData()">Search Weather</button>
+    </div>
+    
+    <div id="box"></div>
+    <div class="mapouter"><div class="gmap_canvas">
+        <iframe width="616" 
+        height="500" 
+        id="gmap_canvas" 
+        frameborder="0" 
+        scrolling="no" 
+        marginheight="0" 
+        marginwidth="0">
+        </iframe>
+
+</body>
+</html>
+<script src='index.js'></script>
