@@ -1,0 +1,12 @@
+#navbar{
+    display: flex;
+    justify-content: space-around;
+}
+#menu{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap:20px;
+}
+#menu>div>img{
+   width:90%
+}
