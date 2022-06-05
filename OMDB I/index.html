@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMDB MOVIE APP I</title>
+</head>
+<style>
+    #navbar{
+   display: flex;
+   background-color:rgb(46, 46, 83);
+}
+#navbar>img{
+    width:200px
+}
+input{
+    width:200px;
+    height: 25px;
+    margin-top: 15px;
+    border: none;
+    background-color:rgb(46, 46, 83);
+    color:white;
+    text-decoration: underline;
+    
+}
+h3{
+    margin-left: 15px;
+    margin-right: 30px;
+    color: wheat;
+}
+button{
+    height: 31px;
+    margin:15px 100px 0px 2px;
+    padding: 5px 5px 5px 5px;
+    font-size: 15px;
+    background-color: rgb(69, 69, 136);
+    border-radius: 8px;
+    color: aliceblue;
+    cursor: pointer;
+}
+#box{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+#box>div>h2{
+    color:black
+}
+</style>
+<body>
+    <div id="navbar">
+        <img src="https://thelogofinder.com/wp-content/uploads/edd/2021/09/disney-hotstar-logo-dark.svg">
+        <h3>TV</h3>
+        <h3>Movies</h3>
+        <h3>Sports</h3>
+        <h3>Disney+</h3>
+        <input type="text" id="input" placeholder="Search here">
+        <button onclick="searchMovie()">Search</button>
+    </div>
+
+    <div id="box">
+       
+    </div>
+</body>
+</html>
+
+<script>
+// http://www.omdbapi.com/?apikey=d80eaf76&
+    // http://www.omdbapi.com/?i=tt3896198&apikey=d80eaf76
+      function searchMovie(){
+         let movie = document.getElementById("input").value;
+         const url = `http://www.omdbapi.com/?t=${movie}&apikey=d80eaf76`
+
+    async function getData(){
+        try{
+            let res = await fetch(url);
+            let user = await res.json();
+            movieData(user)
+            console.log(user)
+        } catch(err){
+            
+          console.log(err)
+        }
+    }
+    getData()
+   
+   function movieData(data){
+    
+           document.getElementById('box').innerHTML = ""
+          let image = document.createElement('img')
+          image.src = data.Poster;
+          let title = document.createElement('h2')
+          title.innerText= data.Title
+          let released = document.createElement('p')
+          released.innerText = data.Released
+          let rating = document.createElement('h4')
+          rating.innerText = data.imdbRating
+          
+          let div = document.createElement('div')
+
+          div.append(image,title,released,rating)
+          document.getElementById('box').append(div)
+    
+   }
+
+    
+       }
+
+
+    
+
+</script>
